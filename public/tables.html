@@ -43,14 +43,7 @@
           <div class="panel-heading">
             <h4 class="panel-title">Current Reservations</h4>
           </div>
-          <div id="currentReservations" class="panel-body">
-            <div class="well">
-              <h2>
-                <span class="label label-primary">1</span>
-                | Name Goes Here
-              </h2>
-            </div>
-          </div>
+          <div id="currentReservations" class="panel-body"></div>
         </div>
       </div>
     </div>
@@ -61,14 +54,7 @@
           <div class="panel-heading">
             <h4 class="panel-title">Waiting List</h4>
           </div>
-          <div class="panel-body">
-            <div class="well">
-              <h2>
-                <span class="label label-primary">1</span>
-                | Name Goes Here
-              </h2>
-            </div>
-          </div>
+          <div id="waitingList" class="panel-body"></div>
         </div>
       </div>
     </div>
@@ -77,11 +63,11 @@
       <div class="container">
         <p>Control Panel</p>
         <p>
-          <a id="#clearTable" href="#">Clear Table</a>
+          <a id="clearTable" href="#">Clear Table</a>
           |
-          <a href="#">API Table Link</a>
+          <a href="/api/tables">API Table Link</a>
           |
-          <a href="#">API Wait List</p>
+          <a href="/api/waitlist">API Wait List</p>
       </div>
     </footer>
 
@@ -95,14 +81,52 @@
 
   <script type="text/javascript">
 
-    // var thisSite = location.origin;
-    var thisSite = "http://hot-restaurant.herokuapp.com/api/tables";
-    console.log(thisSite);
+    var user_info = [{
+      name: "First",
+      number: "888-888-8888",
+      email: "name@email.com",
+      id: "11111"
+    },{
+      name: "Middle",
+      number: "888-888-8888",
+      email: "name@email.com",
+      id: "22222"
+    },{
+      name: "Last",
+      number: "888-888-8888",
+      email: "name@email.com",
+      id: "33333"
+    }]
 
-    $.ajax({url: thisSite, method: "GET"})
-      .done(function(data) {
-        console.log(data);
-    });
+    console.log(user_info);
+
+    // var thisSite = location.origin;
+
+    // $.ajax({url: thisSite + "/api/tables", method: "GET"})
+    //   .done(function(data) {
+    //     console.log(data);
+    // });
+
+    for (i = 0; i < 2; i++) {
+      var waitlistRow = $("<div>");
+      waitlistRow.addClass("well");
+      waitlistRow.append("<h2><span class='label label-primary'>" + (i + 1) + "</span> | " + user_info[i].name + "</h2>");
+      $("#currentReservations").append(waitlistRow);
+    }
+
+    for (i = 2; i < 3; i++) {
+      var waitlistRow = $("<div>");
+      waitlistRow.addClass("well");
+      waitlistRow.append("<h2><span class='label label-primary'>" + (i + 1) + "</span> | " + user_info[i].name + "</h2>");
+      $("#waitingList").append(waitlistRow);
+    }
+
+    $("#clearTable").on("click", function(){
+      event.preventDefault();
+      alert("Clearing tables!");
+      $("#currentReservations").empty();
+      $("#waitingList").empty();
+    })
 
   </script>
 
