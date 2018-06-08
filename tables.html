@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tables Page</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>
+        <div class="glyphicon glyphicon-fire"></div>
+        Hot Restaurant
+      </h1>
+      <hr>
+      <h2>Current Reservations and Waiting List</h2>
+      <br>
+      <a href="#">
+        <button class="btn btn-lg btn-danger">
+          <div class="glyphicon glyphicon-credit-card"></div>
+          Make Reservation
+        </button>
+      </a>
+      <a href="/">
+        <button class="btn btn-lg btn-default">
+          <div class="glyphicon glyphicon-home"></div>
+        </button>
+      </a>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Current Reservations</h4>
+          </div>
+          <div id="currentReservations" class="panel-body">
+            <div class="well">
+              <h2>
+                <span class="label label-primary">1</span>
+                | Name Goes Here
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Waiting List</h4>
+          </div>
+          <div class="panel-body">
+            <div class="well">
+              <h2>
+                <span class="label label-primary">1</span>
+                | Name Goes Here
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>Control Panel</p>
+        <p>
+          <a id="#clearTable" href="#">Clear Table</a>
+          |
+          <a href="#">API Table Link</a>
+          |
+          <a href="#">API Wait List</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+
+    // var thisSite = location.origin;
+    var thisSite = "http://hot-restaurant.herokuapp.com/api/tables";
+    console.log(thisSite);
+
+    $.ajax({url: thisSite, method: "GET"})
+      .done(function(data) {
+        console.log(data);
+    });
+
+  </script>
+
+</body>
+
+</html>
